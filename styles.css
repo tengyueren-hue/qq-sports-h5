@@ -1,0 +1,130 @@
+:root {
+  color-scheme: light;
+  --page: #f0f0f2;
+  --surface: #fff;
+  --text: rgba(0,0,0,.9);
+  --secondary: #909094;
+  --brand: #0099ff;
+  --analysis-blue: #0f8cff;
+  font-family: "PingFang SC", -apple-system, "Microsoft YaHei", sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  color: var(--text);
+  background: var(--page);
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+button { padding: 0; border: 0; border-radius: 0; color: inherit; background: transparent; font: inherit; text-align: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+button:active { opacity: .65; }
+p,h1,h2 { margin: 0; }
+img { display: block; flex-shrink: 0; }
+.screen { width: min(100%,428px); min-height: 100svh; margin: 0 auto; background: var(--page); overflow: clip; }
+.header { position: relative; height: 88px; background: var(--page); }
+.header::after { position: absolute; right: 0; bottom: 0; left: 0; height: .5px; background: rgba(0,0,0,.05); content: ""; }
+.status-bar { position: relative; height: 44px; }
+.status-time { position: absolute; top: 14.9424px; left: 13.263369%; width: 10.665183%; height: 22px; font-family: "SF Pro", -apple-system, sans-serif; font-weight: 590; font-variation-settings: "wdth" 100; font-size: 17px; line-height: 22px; color: #000; text-align: center; white-space: nowrap; }
+.status-levels { position: absolute; top: 0; right: 0; }
+.navigation { display: flex; align-items: center; gap: 12px; height: 44px; padding: 5px 16px; }
+.navigation-left { display: flex; align-items: center; flex: 1; gap: 12px; min-width: 0; }
+.back { display: flex; align-items: center; gap: 2px; height: 24px; }
+.back-slot { position: relative; display: block; width: 12px; height: 24px; }
+.back-slot img { position: absolute; left: -5px; top: 0; }
+.badge { display: flex; align-items: center; justify-content: center; width: 29px; height: 24px; padding: 4px 6px; border-radius: 12px; background: rgba(0,0,0,.1); font-family: "SF Pro Display", -apple-system, sans-serif; font-size: 14px; font-weight: 500; line-height: 16px; }
+.badge > span { flex: 1; min-width: 0; text-align: left; }
+h1 { width: 61px; font-size: 17px; font-weight: 500; line-height: 22px; white-space: nowrap; text-align: center; }
+.menu-button { width: 24px; height: 24px; }
+.timeline { display: flex; flex-direction: column; gap: 16px; margin: 7px 15px 12px 17px; }
+.message { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.timestamp { display: flex; align-items: center; justify-content: center; height: 25px; padding: 4px 0; color: var(--secondary); font-size: 12px; font-weight: 400; line-height: 17px; white-space: nowrap; }
+.message:nth-child(1) > .timestamp { width: 60px; }
+.message:nth-child(2) > .timestamp { width: 62px; }
+.message:nth-child(3) > .timestamp, .message:nth-child(4) > .timestamp { width: 58px; }
+.card { width: 100%; border-radius: 14px; background: var(--surface); }
+.statistics { display: flex; flex-direction: column; align-items: center; padding: 24px 16px; }
+.statistics-row { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.metric { display: flex; flex-direction: column; gap: 4px; }
+.metric-history { width: 125px; }
+.metric-rank-history { align-items: flex-end; }
+.number { display: block; font-size: 48px; font-weight: 400; line-height: 48px; white-space: nowrap; }
+.metric-label { display: block; font-size: 14px; line-height: 14px; }
+.notice { display: flex; flex-direction: column; align-items: center; padding: 16px; }
+.notice-inner { position: relative; display: block; width: 100%; height: 32px; }
+.notice-content { position: absolute; left: 0; top: -.083px; display: flex; align-items: center; gap: 8px; }
+.notice-copy { display: block; font-size: 14px; line-height: 20px; white-space: nowrap; }
+.avatars { position: relative; display: block; flex-shrink: 0; width: 72px; height: 32px; }
+.avatar { position: absolute; top: 0; width: 32px; height: 32px; }
+.avatar img { position: absolute; left: -1px; top: -1px; }
+.avatar-rear { left: 17px; }
+.avatar-front { left: 0; }
+.notice-chevron { position: absolute; right: -4px; top: 7.834px; }
+.sport-icon, .footsteps-icon, .ai-mark { position: relative; display: block; flex-shrink: 0; width: 24px; height: 24px; }
+.sport-icon img { position: absolute; left: 11.22%; top: 11.08%; }
+.sport-icon-large { width: 32px; height: 32px; }
+.foot-left { position: absolute; left: 22.22%; top: 13.89%; }
+.foot-right { position: absolute; left: 52.89%; top: 25.98%; }
+.today { display: flex; flex-direction: column; align-items: center; }
+.today-statistics { width: calc(100% - 32px); padding: 24px 0; }
+.metric-today { width: 116px; }
+.metric-rank-today { width: 56px; text-align: right; }
+.statistics-divider { position: relative; width: 100%; height: 0; overflow: visible; }
+.statistics-divider img { position: absolute; top: -1px; left: 0; }
+.insights-container { width: 100%; padding: 16px 12px; }
+.insights { position: relative; isolation: isolate; display: flex; flex-direction: column; align-items: stretch; gap: 20px; width: 100%; padding: 16px 10px 0; overflow: hidden; border-radius: 8px; background: white; }
+/* Figma's ellipse is defined by the two axes of this affine transform. */
+.insights::before { position: absolute; z-index: -1; left: calc(50% - 7.5px); top: -14.5px; width: 20px; height: 20px; transform: matrix(11.2,29.05,-50.783,16.514,0,0); opacity: .2; background: radial-gradient(circle closest-side,rgba(0,133,255,.4) 0%,rgba(32,148,255,.475) 7.4176%,rgba(64,164,255,.55) 14.835%,rgba(128,194,255,.7) 29.671%,rgba(191,225,255,.85) 44.506%,rgba(255,255,255,1) 59.341%); content: ""; }
+.analysis-copy { padding: 0 8px; }
+.analysis-content { display: flex; flex-direction: column; gap: 16px; }
+h2#analysis-heading { align-self: flex-start; display: flex; align-items: center; gap: 4px; height: 24px; color: var(--analysis-blue); font-size: 16px; font-weight: 600; line-height: 22px; }
+.ai-mark img { position: absolute; left: 7.5%; top: 20.56%; }
+.analysis-paragraph { width: 100%; font-size: 14px; font-weight: 400; line-height: 20px; overflow-wrap: break-word; }
+.suggestions { display: flex; flex-direction: column; gap: 12px; }
+.suggestion { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 12px 8px; border-radius: 8px; background: rgba(0,0,0,.02); }
+.suggestion-body { display: flex; flex: 1; align-items: center; gap: 8px; min-width: 0; }
+.suggestion-copy { font-size: 14px; line-height: 14px; white-space: nowrap; }
+.run-copy { line-height: 20px; }
+.raster-icon { width: 24px; height: 24px; object-fit: cover; }
+.action-link { display: flex; flex-shrink: 0; align-items: flex-start; gap: 4px; color: var(--analysis-blue); font-size: 14px; line-height: 14px; white-space: nowrap; }
+.suggestion:first-child .action-link { color: var(--brand); }
+.suggestion:first-child .action-link > span { width: 41px; }
+.footer { position: relative; height: 84px; background: white; }
+.footer-navigation { display: flex; align-items: center; gap: 4px; height: 20px; margin: 0 16px; position: relative; top: 12px; }
+.footer-navigation button { flex: 1 0 0; min-width: 0; }
+.footer-navigation button span { display: block; width: 100%; font-size: 14px; line-height: 20px; text-align: center; }
+.footer-divider { position: relative; flex-shrink: 0; width: 0; height: 20px; }
+.footer-divider img { position: absolute; top: 9.5px; left: -10px; transform: rotate(-90deg) scaleY(-1); }
+.home-indicator { position: absolute; left: 0; right: 0; bottom: .194667816px; height: 38.805332184px; }
+.home-indicator span { position: absolute; top: calc(50% + 7.42px); left: 50%; width: 168.917px; height: 5.707px; transform: translate(-50%,-50%); border-radius: 2.5px; background: #000; }
+/* Narrow viewports reflow copy; the design baseline remains 428 × 1139. */
+@media (max-width: 410px) {
+  .notice-content { right: 12px; }
+  .notice-copy { white-space: normal; }
+  .avatars { width: 52px; }
+  .suggestion-copy { white-space: normal; line-height: 20px; }
+  .statistics-divider { overflow: clip; height: 1px; margin-top: -1px; }
+  .statistics-divider img { top: 0; }
+}
+#detail-dialog { width: min(360px, calc(100% - 40px)); padding: 28px 24px 20px; border: 0; border-radius: 18px; color: var(--text); background: white; box-shadow: 0 12px 60px #0002; }
+#detail-dialog::backdrop { background: #0005; }
+#detail-title { padding-right: 24px; font-size: 20px; font-weight: 600; line-height: 28px; }
+#detail-copy { margin: 16px 0 24px; font-size: 15px; line-height: 24px; white-space: pre-line; }
+.dialog-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; font: 24px/32px -apple-system,sans-serif; background: #f0f0f2; text-align: center; }
+.dialog-done { width: 100%; padding: 12px; border-radius: 10px; color: white; background: var(--brand); font-size: 15px; text-align: center; }
+#detail-menu:not([hidden]) { display: grid; gap: 8px; margin-bottom: 20px; }
+#detail-menu button { padding: 12px; border-radius: 8px; background: var(--page); }
+
+/* Fortune entrance: Figma 2586:38875, card 2584:19223. */
+:root{--secondary:rgba(60,60,67,.56);--link:rgba(33,76,165,1)}
+.header{z-index:2}.timeline{margin:-51px 19px 27px 13px;display:block}.timestamp{height:25px;line-height:25px;text-align:center;font-size:12px;color:var(--secondary);margin-bottom:12px}.message{display:block}.history-card{height:114px;padding:24px 18px;width:100%}.statistics-row{width:100%;display:flex;justify-content:space-between}.metric{width:110px;display:flex;flex-direction:column;align-items:center}.metric .number{font:400 48px/48px "PingFang SC",sans-serif;letter-spacing:0}.metric-label{font-size:14px;line-height:20px;margin-top:-2px}.champion{display:flex;align-items:center;gap:8px;margin-top:16px;color:var(--secondary);font-size:14px;height:24px}.champion img{border-radius:50%}.today-message{margin-top:34px}.today{padding:0;overflow:hidden;border-radius:18px}.fortune-hero{height:auto;aspect-ratio:396/402;position:relative;background:white}.fortune-art{position:absolute;top:16.4179%;width:100%;height:82.0896%;object-fit:contain}.today-statistics{position:absolute;left:0;top:18px;width:100%;height:84px;padding:8px 18px;background:transparent}.draw-entry{position:absolute;right:14px;bottom:26px;width:126px;height:40px;background:#ffe189;border-radius:20px;text-align:center;font-size:18px;line-height:26px}.fortune-reminders{padding:2px 12px 12px;display:grid;gap:8px;background:white}.reminder{display:flex;align-items:center;gap:8px;min-height:46px;padding:10px 10px 10px 12px;border-radius:14px;background:#f7f7f8;font-size:14px;line-height:20px}.reminder>span:nth-child(2){flex:1}.reminder-link{color:var(--link);white-space:nowrap}.reminder-chevron{width:5.14px;height:13.13px;margin:0 3.4px}.footsteps-icon{width:24px;height:24px;position:relative;flex-shrink:0}.foot-left{position:absolute;left:3px;top:1px;width:5.98px;height:14.6px}.foot-right{position:absolute;left:14px;top:7px;width:5.97px;height:14.606px}.leaderboard-entry{display:flex;gap:4px;align-items:center;margin:auto;padding-top:13px;font-size:14px;line-height:20px}.footer{height:84px}.screen{min-height:100svh}.card{background:white}@media(max-width:380px){.reminder{gap:5px;font-size:12px;padding-left:8px}.today-statistics{top:10px}.draw-entry{bottom:18px}.champion{font-size:12px}}
+
+.statistics-row>.metric:first-child{align-items:flex-start}.statistics-row>.metric:last-child{align-items:flex-end}
+.fortune-hero,.fortune-reminders{width:100%}.metric{gap:0}
+
+:root{--qq-text-primary:rgba(0,0,0,.9);--qq-text-secondary:rgba(60,60,67,.56);--qq-text-link:rgba(33,76,165,1);--text:var(--qq-text-primary);--secondary:var(--qq-text-secondary);--link:var(--qq-text-link)}
+@font-face{font-family:'Noto Sans SC';src:url('./assets/fortune/noto-sans-sc-400.ttf') format('truetype');font-weight:400;font-display:swap}
+.today .metric-label,.reminder{font-family:'Noto Sans SC','PingFang SC',sans-serif}.reminder>span:nth-child(2){height:22px}
+/* V1.0 replaces the entry label while preserving the source metrics and artwork. */
+.draw-entry{width:160px;font-size:15px}
+
+/* Drawn state: a quiet result label in the original artwork slot. */
+.draw-entry.has-fortune{background:#fff0bd;font-size:14px;line-height:22px;white-space:nowrap}

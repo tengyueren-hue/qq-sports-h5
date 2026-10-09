@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f0f0f2">
+  <title>QQ运动 · 小游戏广告样式</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./ad-preview.css">
+</head>
+<body>
+  <main class="screen" data-figma-id="2586:38875">
+    <header class="header" data-figma-id="1172:23495">
+      <div class="status-bar" data-figma-id="1172:23496" aria-label="9:00，网络与电池状态">
+        <span class="status-time" data-figma-id="I1172:23496;180341:9183">9:00</span>
+        <img class="status-levels" src="assets/1172-23495-imgLevels.svg" alt="" width="141" height="44">
+      </div>
+      <nav class="navigation" aria-label="页面导航" data-figma-id="1172:23497">
+        <div class="navigation-left">
+          <button class="back" aria-label="返回，57 条未读消息" data-action="back">
+            <span class="back-slot"><img data-figma-id="1172:23501" src="assets/1172-23495-imgChevronLeft.svg" alt="" width="24" height="24"></span>
+            <span class="badge" data-figma-id="1172:23502"><span data-figma-id="I1172:23502;0:5621">57</span></span>
+          </button>
+          <h1 data-figma-id="1172:23505">QQ运动</h1>
+        </div>
+        <button class="menu-button" data-action="menu" aria-label="打开运动菜单"><img data-figma-id="1172:23585" src="assets/1172-23495-imgIcon2.svg" alt="" width="24" height="24"></button>
+      </nav>
+    </header>
+
+    <section class="timeline" aria-label="运动消息">
+      <section class="message"><div class="timestamp">昨天 22:00</div><button class="statistics card history-card" data-action="history" aria-label="昨天10123步，排名第4"><span class="statistics-row"><span class="metric"><span class="number">10123</span><span class="metric-label">步数</span></span><span class="metric"><span class="number">4</span><span class="metric-label">排名</span></span></span></button></section>
+      <div class="champion"><img src="assets/fortune/d26dfb33-c44e-4a0c-b7d2-14ed0be9548d.png" alt="" width="24" height="24"><span>大泡泡夺得11月22日排行榜冠军</span></div>
+      <section class="message today-message"><div class="timestamp">下午 18:00</div>
+      <article class="today card" data-figma-id="2584:19223">
+        <div class="fortune-hero">
+          <img class="fortune-art" src="assets/game-ad-card-v2.png" alt="玩会小游戏，快乐歇个脚。企鹅在草地上休息。">
+          <button class="statistics today-statistics" data-action="today" aria-label="今日7111步，排名第6，进入运动首页"><span class="statistics-row"><span class="metric"><span class="number">7111</span><span class="metric-label">今日步数</span></span><span class="metric"><span class="number">6</span><span class="metric-label">排名</span></span></span></button>
+          <span class="ad-label">广告</span>
+          <div class="game-entries" aria-label="小游戏广告"><button class="game-entry" data-action="game-landlord"><span class="game-icon landlord" aria-hidden="true">🃏</span><span>腾讯斗地主</span></button><button class="game-entry" data-action="game-egg"><span class="game-icon egg" aria-hidden="true">🐣</span><span>大掼蛋</span></button></div>
+          <button class="draw-entry" data-action="draw">抽取今日走运签 ↗</button>
+        </div>
+        <div class="fortune-reminders">
+          <button class="reminder" data-action="analysis"><img src="assets/fortune/e4a6febf-5011-484a-ab92-af28452b80ef.svg" width="24" height="24" alt=""><span>今日运动：跑步30分钟</span><span class="reminder-link">AI分析</span><img class="reminder-chevron" src="assets/fortune/30329bf1-4e53-4900-aa1d-2a028b37f8b6.svg" alt=""></button>
+          <button class="reminder" data-action="donate"><span class="footsteps-icon"><img class="foot-left" src="assets/fortune/11a1fb9b-6d60-46d7-ba32-304f8729e911.svg" alt=""><img class="foot-right" src="assets/fortune/5453e5f0-ec80-40a7-bef4-e80eb6582fa6.svg" alt=""></span><span>已超过 6,000 步，可以捐步啦</span><span class="reminder-link">去捐步</span><img class="reminder-chevron" src="assets/fortune/30329bf1-4e53-4900-aa1d-2a028b37f8b6.svg" alt=""></button>
+        </div>
+      </article></section>
+    </section>
+    <footer class="footer"><button class="leaderboard-entry" data-action="rank"><img src="assets/fortune/c8d93c0b-e8e5-49d7-875b-ea82c242beb8.svg" width="20" height="20" alt="">查看排行榜<img src="assets/fortune/9ee6957a-01ab-4943-90a7-53e60ebedce0.svg" width="16" height="16" alt=""></button><div class="home-indicator" aria-hidden="true"><span></span></div></footer>
+  </main>
+
+  <dialog id="detail-dialog" aria-labelledby="detail-title" aria-describedby="detail-copy">
+    <form method="dialog"><button class="dialog-close" aria-label="关闭详情">×</button></form>
+    <h2 id="detail-title"></h2>
+    <p id="detail-copy"></p>
+    <div id="detail-menu" hidden>
+      <button data-action="today">今日步数</button><button data-action="run">跑步记录</button><button data-action="habits">习惯打卡</button>
+    </div>
+    <form method="dialog"><button class="dialog-done">知道了</button></form>
+  </dialog>
+  <script type="module" src="./ad-preview.js"></script>
+</body>
+</html>

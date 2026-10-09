@@ -1,0 +1,24 @@
+
+.fortune-hero{aspect-ratio:auto;height:282px;background:linear-gradient(#fff 25%,#fffdf3)}
+.fortune-art{top:100px;width:100%;height:132px;object-fit:cover;object-position:center}
+.today-statistics{top:18px}
+.ad-label{position:absolute;top:105px;right:12px;font-size:9px;line-height:15px;color:var(--secondary);background:#ffffffb8;border:1px solid #e8e8e8;padding:0 4px;border-radius:4px}
+.game-entries{position:absolute;left:14px;bottom:12px;display:flex;gap:12px;align-items:center}
+.game-entry{display:flex;flex-direction:column;gap:4px;align-items:center;min-height:54px;font-size:10px;line-height:15px;color:var(--primary)}
+.game-icon{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:23px;box-shadow:0 1px 5px #0000000d;border:2px solid #fff}
+.landlord{background:#ffe5ad}.egg{background:#c9efff}
+.draw-entry,.draw-entry.has-fortune{right:12px;bottom:15px;width:auto;min-width:92px;height:36px;padding:0 12px;border:1px solid #ede9dd;background:#fff9e8;font-size:11px;line-height:20px;white-space:nowrap;border-radius:20px}
+@media(max-width:380px){.fortune-art{height:123px;top:100px}.fortune-hero{height:272px}.today-statistics{top:18px}.game-entries{gap:10px;left:12px}.draw-entry{bottom:15px}}
+/* Match the original plugin card footprint and metric positions. */
+.fortune-hero{height:auto;aspect-ratio:396/402;background:white}
+.fortune-art{top:16.4179%;width:100%;height:82.0896%;object-fit:contain;object-position:center}
+.today-statistics{top:18px}
+.ad-label{top:104px;right:12px}
+.game-entries{bottom:18px}
+.draw-entry,.draw-entry.has-fortune{bottom:24px}
+@media(max-width:380px){.fortune-hero{height:auto;aspect-ratio:396/402}.fortune-art{top:16.4179%;height:82.0896%}.today-statistics{top:10px}.ad-label{top:94px}.draw-entry,.draw-entry.has-fortune{bottom:20px}.game-entries{bottom:14px}}
+/* Larger game recommendations without changing the card footprint. */
+.game-entries{left:16px;bottom:16px;gap:16px}
+.game-entry{min-width:70px;min-height:70px;font-size:12px;line-height:18px;gap:5px}
+.game-icon{width:46px;height:46px;font-size:32px;border-width:2px}
+@media(max-width:380px){.game-entries{left:12px;bottom:12px;gap:12px}.game-entry{min-width:64px;font-size:11px;min-height:66px}.game-icon{width:42px;height:42px;font-size:29px}}
