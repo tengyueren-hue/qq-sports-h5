@@ -1,0 +1,5 @@
+export const KEY='qq-fortune-v1';
+export function day(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
+export function read(){const raw=localStorage.getItem(KEY);const s=raw?JSON.parse(raw):{records:{},used:[]};if(!s.records||!Array.isArray(s.used))throw Error('记录无法读取，请勿清除数据后重抽');return s}
+export function choose(s,pool,date=day()){if(s.records[date])return s.records[date];const available=pool.filter(f=>!s.used.includes(f.id));if(!available.length)throw Error('100张好运已抽完，下一轮规则待确认');const n=available.length,a=new Uint32Array(1),limit=Math.floor(4294967296/n)*n;do{crypto.getRandomValues(a)}while(a[0]>=limit);const record={date,fortune:available[a[0]%n],received:false};s.records[date]=record;s.used.push(record.fortune.id);return record}
+export async function mutate(fn){const run=()=>{const s=read(),result=fn(s);localStorage.setItem(KEY,JSON.stringify(s));return result};return navigator.locks?navigator.locks.request(KEY,run):run()}

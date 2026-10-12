@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f0f0f2">
+  <title>QQ运动</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="./v1.css">
+</head>
+<body data-page="plugin">
+  <main class="screen" data-figma-id="2586:38875">
+    <header class="header" data-figma-id="1172:23495">
+      <div class="status-bar" data-figma-id="1172:23496" aria-label="9:00，网络与电池状态">
+        <span class="status-time" data-figma-id="I1172:23496;180341:9183">9:00</span>
+        <img class="status-levels" src="../assets/1172-23495-imgLevels.svg" alt="" width="141" height="44">
+      </div>
+      <nav class="navigation" aria-label="页面导航" data-figma-id="1172:23497">
+        <div class="navigation-left">
+          <button class="back" aria-label="返回，57 条未读消息" data-action="back">
+            <span class="back-slot"><img data-figma-id="1172:23501" src="../assets/1172-23495-imgChevronLeft.svg" alt="" width="24" height="24"></span>
+            <span class="badge" data-figma-id="1172:23502"><span data-figma-id="I1172:23502;0:5621">57</span></span>
+          </button>
+          <h1 data-figma-id="1172:23505">QQ运动</h1>
+        </div>
+        <button class="menu-button" data-action="menu" aria-label="打开运动菜单"><img data-figma-id="1172:23585" src="../assets/1172-23495-imgIcon2.svg" alt="" width="24" height="24"></button>
+      </nav>
+    </header>
+
+    <section class="timeline" aria-label="运动消息">
+      <section class="message"><div class="timestamp">昨天 22:00</div><button class="statistics card history-card" data-action="history" aria-label="昨天10123步，排名第4"><span class="statistics-row"><span class="metric"><span class="number">10123</span><span class="metric-label">步数</span></span><span class="metric"><span class="number">4</span><span class="metric-label">排名</span></span></span></button></section>
+      <div class="champion"><img src="../assets/fortune/d26dfb33-c44e-4a0c-b7d2-14ed0be9548d.png" alt="" width="24" height="24"><span>大泡泡夺得11月22日排行榜冠军</span></div>
+      <section class="message today-message"><div class="timestamp">下午 18:00</div>
+      <article class="today card" data-figma-id="2584:19223">
+        <div class="fortune-hero">
+          <img class="fortune-art" src="../assets/fortune/fc5f663b-0f63-440b-8d6a-591f7539213f.png" alt="动一下，快乐就来。企鹅与星星一起在花丛中欢跳。">
+          <button class="statistics today-statistics" data-action="today" aria-label="今日7111步，排名第6，进入运动首页"><span class="statistics-row"><span class="metric"><span class="number">7111</span><span class="metric-label">今日步数</span></span><span class="metric"><span class="number">6</span><span class="metric-label">排名</span></span></span></button>
+          <button class="draw-entry" data-action="draw">抽取今日好运 ↗</button>
+          <div class="game-ads" aria-label="小游戏推荐广告"><a href="https://h5.qq.com/" target="_blank" rel="noopener"><span class="game-art game-one">✿</span><span><b>花园小游戏</b><small>广告示意 · 点开玩</small></span><i>↗</i></a><a href="https://h5.qq.com/" target="_blank" rel="noopener"><span class="game-art game-two">▦</span><span><b>轻松消一消</b><small>广告示意 · 点开玩</small></span><i>↗</i></a></div>
+        </div>
+      </article></section>
+    </section>
+    <footer class="footer"><button class="leaderboard-entry" data-action="rank"><img src="../assets/fortune/c8d93c0b-e8e5-49d7-875b-ea82c242beb8.svg" width="20" height="20" alt="">查看排行榜<img src="../assets/fortune/9ee6957a-01ab-4943-90a7-53e60ebedce0.svg" width="16" height="16" alt=""></button><div class="home-indicator" aria-hidden="true"><span></span></div></footer>
+  </main>
+
+  <dialog id="detail-dialog" aria-labelledby="detail-title" aria-describedby="detail-copy">
+    <form method="dialog"><button class="dialog-close" aria-label="关闭详情">×</button></form>
+    <h2 id="detail-title"></h2>
+    <p id="detail-copy"></p>
+    <div id="detail-menu" hidden>
+      <button data-action="today">今日步数</button><button data-action="run">跑步记录</button><button data-action="habits">习惯打卡</button>
+    </div>
+    <form method="dialog"><button class="dialog-done">知道了</button></form>
+  </dialog>
+  <script type="module" src="./v1.js"></script>
+</body>
+</html>
