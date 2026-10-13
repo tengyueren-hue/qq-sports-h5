@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 2147227047">
+<g id="image">
+<circle cx="32" cy="32" r="32" fill="white" fill-opacity="0.8"/>
+<circle cx="32" cy="32" r="32" stroke="white"/>
+</g>
+<path id="Star 5" d="M31.5471 25.8543C31.7397 25.491 32.2603 25.491 32.4529 25.8543L34.5986 29.9014L38.6457 32.0471C39.009 32.2397 39.009 32.7603 38.6457 32.9529L34.5986 35.0986L32.4529 39.1457C32.2603 39.509 31.7397 39.509 31.5471 39.1457L29.4014 35.0986L25.3543 32.9529C24.991 32.7603 24.991 32.2397 25.3543 32.0471L29.4014 29.9014L31.5471 25.8543Z" fill="#15D173"/>
+</g>
+</svg>

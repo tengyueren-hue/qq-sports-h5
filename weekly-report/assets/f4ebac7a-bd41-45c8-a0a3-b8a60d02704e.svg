@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="&#230;&#137;&#147;&#229;&#141;&#161;">
+<circle id="Ellipse 6188" cx="6" cy="6" r="6" fill="url(#paint0_linear_0_16)"/>
+<path id="Subtract" fill-rule="evenodd" clip-rule="evenodd" d="M4.01685 5.64929C3.82322 5.45566 3.50927 5.45566 3.31564 5.64929C3.122 5.84293 3.122 6.15687 3.31564 6.35051L4.65316 7.68803C5.0746 8.10947 5.75789 8.10947 6.17933 7.68803L8.68352 5.18384C8.87715 4.99021 8.87715 4.67626 8.68352 4.48263C8.48988 4.28899 8.17594 4.28899 7.9823 4.48263L5.47812 6.98682C5.44395 7.02099 5.38854 7.02099 5.35437 6.98682L4.01685 5.64929Z" fill="white"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_16" x1="6" y1="0" x2="6" y2="12" gradientUnits="userSpaceOnUse">
+<stop stop-color="#94DE01"/>
+<stop offset="1" stop-color="#51D40C"/>
+</linearGradient>
+</defs>
+</svg>
