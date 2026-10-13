@@ -6,9 +6,9 @@ function sync() {
   if (syncing) return syncing;
   syncing = fetchState().then(state => {
     const drawn = Boolean(state.fortune);
-    entry.textContent = drawn ? `今日运势：${state.fortune.name}` : '抽取今日走运签 ↗';
+    entry.textContent = drawn ? `今日运势：${state.fortune.name}` : '查看我的走运签';
     entry.classList.toggle('has-fortune', drawn);
-    entry.setAttribute('aria-label', drawn ? `今日运势：${state.fortune.name}，打开签面` : '抽取今日走运签');
+    entry.setAttribute('aria-label', drawn ? `今日运势：${state.fortune.name}，打开签面` : '查看我的走运签');
     document.querySelector('.today-statistics .number').textContent = state.sports.steps ?? '—';
     clearTimeout(refreshTimer);
     refreshTimer = setTimeout(sync, Math.max(100, Date.parse(state.nextReset) - Date.parse(state.serverNow) + 100));

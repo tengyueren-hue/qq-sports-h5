@@ -7,6 +7,7 @@ function show(title,copy){document.querySelector('#dialog-title').textContent=ti
 document.addEventListener('click',async event=>{
  const button=event.target.closest('[data-home-action]');if(!button)return;
  const action=button.dataset.homeAction;
+ if(action==='calendar'){location.assign('./sports-calendar.html');return}
  if(action==='rank'){document.querySelector('#friend-ranking').scrollIntoView({behavior:'smooth'});return}
  if(action==='like'){
   const liked=button.getAttribute('aria-pressed')==='true';button.setAttribute('aria-pressed',String(!liked));

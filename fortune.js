@@ -1,7 +1,9 @@
-import {rarityBadge, rarityRules, rarityArt, tierOf} from './fortune-rarity.js';
+import {rarityBadge, rarityArt, tierOf} from './fortune-rarity.js';
 import {makePoster} from './fortune-poster.js';
 import {fetchState, stepMessage} from './fortune-data.js';
 
+const showYuanbaoPromotion = new URLSearchParams(location.search).get('source') === 'ad-preview';
+if (showYuanbaoPromotion) document.querySelector('.back-link').href = './ad-preview.html';
 const modal = document.querySelector('#fortune-dialog');
 const status = document.querySelector('#fortune-status');
 const art = './design/fortune-artwork-05-18-light/fortune-05-light.png';
@@ -28,15 +30,14 @@ function syncHome() {
   if (!state) return;
   const summary=document.querySelector('.summary');
   let signButton=summary.querySelector('.summary-fortune');
-  if(!signButton){signButton=document.createElement('button');signButton.className='summary-fortune';signButton.dataset.fortune='draw';signButton.setAttribute('aria-label','查看今日走运签');summary.insertBefore(signButton,summary.querySelector('.rule'));}
-  const divider=summary.querySelector('.rule');
-  if(divider&&signButton.nextElementSibling!==divider)summary.insertBefore(signButton,divider);
+  if(!signButton){signButton=document.createElement('button');signButton.className='summary-fortune';signButton.dataset.fortune='draw';signButton.setAttribute('aria-label','查看今日走运签');summary.querySelector('.step-ring').append(signButton);}
+  if(signButton.parentElement!==summary.querySelector('.step-ring'))summary.querySelector('.step-ring').append(signButton);
   const sign=state.fortune;
   if(sign){
     summary.dataset.rarity=sign.rarity||'teal';
     const key=sign.id+':'+(sign.rarity||'teal');
-    if(signButton.dataset.sign!==key){signButton.innerHTML=rarityArt(sign)+`<span><small>今日${tierOf(sign).name}</small><strong>${escapeHTML(sign.name)}</strong></span><span class="summary-fortune-arrow" aria-hidden="true">›</span>`;signButton.dataset.sign=key;}
-    signButton.hidden=false;
+    if(signButton.dataset.sign!==key){signButton.innerHTML=rarityArt(sign)+`<span><strong>${escapeHTML(sign.name)}</strong><small>今日${tierOf(sign).name}</small></span>`;signButton.dataset.sign=key;}
+    signButton.hidden=false;signButton.title=`${tierOf(sign).name} · ${sign.name}，点击查看`;signButton.setAttribute('aria-label',`查看今日走运签：${tierOf(sign).name}，${sign.name}`);
   }else{delete summary.dataset.rarity;signButton.hidden=true;delete signButton.dataset.sign;}
 
   document.querySelector('#fortune-home-title').textContent = state.fortune ? `今日已抽到「${state.fortune.name}」` : '每天一签，看看今日好运';
@@ -99,13 +100,18 @@ function result(record, animate = false) {
     <div class="lucky-guidance"><span><b>宜</b>${escapeHTML(f.suitable)}</span><span><b>忌</b>${escapeHTML(f.avoid)}</span></div>
     <p class="lucky-verse">${escapeHTML(f.message).replace('，', '，<br>')}</p>
     <div class="lucky-divider" aria-hidden="true"><span>✦</span></div>
-    <dl class="lucky-numbers"><div><dt>幸运步数</dt><dd>${format(f.luckySteps)}<small>步</small></dd></div><div><dt>${record.date === state?.date ? '今日已走' : '当天已走'}</dt><dd><span data-live-steps>${format(record.sports.steps)}</span><small>步</small></dd></div></dl>
-    <p class="lucky-step-copy" aria-live="polite">${stepMessage(record.sports.steps, record.sports.goal)}</p>
+    
+    
     <div class="lucky-actions"><button data-fortune="accept">收下好运</button><button data-fortune="share">分享给好友</button></div>
-    <p class="lucky-next">${record.date === state?.date ? '今日好运已为你留住 · 明天再来走好运' : '这一天的好运，已经为你留住'}</p>
+    ${showYuanbaoPromotion ? '<a class="yuanbao-fortune-entry" href="https://yuanbao.tencent.com/" target="_blank" rel="noopener noreferrer"><span class="yuanbao-entry-symbol" aria-hidden="true">✦</span><span>去元宝测测我的今日运势</span><span aria-hidden="true">›</span></a>' : ''}
+    
     <div class="lucky-reset" hidden>北京时间零点已过，可以抽今天的走运签。<br><button data-fortune="draw">抽取今日走运签</button></div>
-    ${rarityRules}<div class="lucky-ambient" aria-hidden="true"><img src="${art}" alt=""></div>
+    <div class="lucky-ambient" aria-hidden="true"><img src="${art}" alt=""></div>
   </section>`;
+  {
+    modal.querySelector('.lucky-sheet').classList.add('lucky-sheet-compact');
+    modal.querySelectorAll('.lucky-numbers, .lucky-step-copy, .lucky-divider, .yuanbao-promotion-label, .lucky-next, .rarity-rules').forEach(element => element.remove());
+  }
   open(); modal.scrollTop = 0; updateSteps();
 }
 function errorView() {
@@ -140,7 +146,7 @@ function posterPreview(blob) {
   posterBlob=blob;
   if(posterURL)URL.revokeObjectURL(posterURL);
   posterURL=URL.createObjectURL(blob);view='poster';
-  modal.innerHTML=top('把好运分享给好友',true)+`<div class="fortune-poster"><img src="${posterURL}" alt="${escapeHTML(current.fortune.name)}走运签分享卡片"><a href="${posterURL}" download="QQ走运签-${current.date}.png">保存分享卡片</a><button data-fortune="system-share">打开系统分享</button><p>也可以长按保存图片，发送给QQ好友。<br>分享卡片中的步数为生成时的数据。</p></div>`;
+  modal.innerHTML=top('把这份好运，送给你',true)+`<div class="fortune-poster"><img src="${posterURL}" alt="${escapeHTML(current.fortune.name)}走运签分享卡片"><a href="${posterURL}" download="QQ走运签-${current.date}.png">保存签卡</a><button data-fortune="system-share">分享好友</button><p>长按签卡也可以保存，把好运送给惦记的人。</p></div>`;
   open();modal.scrollTop=0;
 }
 async function share() {
@@ -171,7 +177,7 @@ document.addEventListener('click',e=>{
   const button=e.target.closest('[data-fortune]');
   if(button){switch(button.dataset.fortune){
     case'draw':draw();break;
-    case'history':++requestId;drawing=false;location.assign('./fortune-history.html');break;
+    case'history':++requestId;drawing=false;location.assign('./fortune-history.html'+(showYuanbaoPromotion?'?source=ad-preview':''));break;
     case'close':case'accept':modal.close();break;
     case'back':if(current)result(current);break;
     case'share':share();break;

@@ -1,4 +1,6 @@
-import {rarityBadge, rarityRules, rarityArt} from './fortune-rarity.js';
+const fromAdPreview = new URLSearchParams(location.search).get('source') === 'ad-preview';
+if (fromAdPreview) document.querySelector('.history-nav a').href = './home.html?source=ad-preview&fortune=view';
+import {rarityBadge, rarityArt} from './fortune-rarity.js';
 import {makePoster} from './fortune-poster.js';
 import {fetchState, stepMessage} from './fortune-data.js';
 const content=document.querySelector('#history-content');
@@ -23,7 +25,7 @@ function render(){
  <div class="fortune-home-copy"><span class="fortune-home-eyebrow">QQ运动 · 每日走运签</span>${todaySign?rarityBadge(todaySign):'<span class="hero-await">今日好运待开启</span>'}<h2>${todaySign?esc(todaySign.name):'今天走什么运？'}</h2><p>${todaySign?esc(todaySign.message):'每天一签，收下一份小欢喜。'}</p><button class="fortune-home-draw" data-hero-today>${todaySign?'打开今日签':'抽取今日走运签'} <span aria-hidden="true">↗</span></button></div>
  <div class="lucky-mascot" aria-hidden="true"><img src="./design/fortune-artwork-05-18-light/fortune-05-light.png" alt=""></div>
  <div class="history-stats"><div><strong>${data.records.length}</strong><span>累计收签天数</span></div><div><strong>${data.records.filter(r=>monthOf(r.date)===monthOf(data.date)).length}</strong><span>本月收签天数</span></div><div><strong>${data.records.filter(r=>r.makeup).length}</strong><span>累计补签天数</span></div></div></section>
- <section class="collection-summary"><strong>我的好运收藏 <span>${new Set(data.records.map(r=>r.fortune.id+':'+(r.fortune.rarity||'teal'))).size}/60</span></strong><div>${[['teal','好事签'],['purple','如意签'],['gold','上上签']].map(([tier,label])=>`<span data-rarity="${tier}">✦ ${label} ${new Set(data.records.filter(r=>(r.fortune.rarity||'teal')===tier).map(r=>r.fortune.id)).size}/20</span>`).join('')}</div>${rarityRules}</section><section class="fortune-calendar" aria-label="走运签日历"><div class="calendar-month-nav"><button data-month="-1" aria-label="上个月">‹</button><h2>${year}年${m}月</h2><button data-month="1" aria-label="下个月" ${month>=monthOf(data.date)?'disabled':''}>›</button></div><div class="calendar-weekdays" aria-hidden="true">${['一','二','三','四','五','六','日'].map(d=>`<span>${d}</span>`).join('')}</div><div class="calendar-days">${cells.join('')}</div><div class="calendar-legend"><span><i class="legend-received"></i>已收签</span><span><i class="legend-makeup"></i>已补签</span><span><i></i>漏签可补</span><button data-current-month>回到本月</button></div></section>`;
+ <section class="collection-summary"><strong>我的好运收藏 <span>${new Set(data.records.map(r=>r.fortune.id+':'+(r.fortune.rarity||'teal'))).size}/60</span></strong><div>${[['teal','好事签'],['purple','如意签'],['gold','上上签']].map(([tier,label])=>`<span data-rarity="${tier}">✦ ${label} ${new Set(data.records.filter(r=>(r.fortune.rarity||'teal')===tier).map(r=>r.fortune.id)).size}/20</span>`).join('')}</div></section><section class="fortune-calendar" aria-label="走运签日历"><div class="calendar-month-nav"><button data-month="-1" aria-label="上个月">‹</button><h2>${year}年${m}月</h2><button data-month="1" aria-label="下个月" ${month>=monthOf(data.date)?'disabled':''}>›</button></div><div class="calendar-weekdays" aria-hidden="true">${['一','二','三','四','五','六','日'].map(d=>`<span>${d}</span>`).join('')}</div><div class="calendar-days">${cells.join('')}</div><div class="calendar-legend"><span><i class="legend-received"></i>已收签</span><span><i class="legend-makeup"></i>已补签</span><span><i></i>漏签可补</span><button data-current-month>回到本月</button></div></section>`;
 }
 
 const format=n=>n==null?'—':n.toLocaleString('zh-CN');
@@ -35,9 +37,9 @@ function showFortune(record){
  <div class="lucky-meta">${record.date.replaceAll('-','.')} · 每天一份好运</div><div class="fortune-slip-heading">${rarityArt(f)}<div class="fortune-slip-copy">${rarityBadge(f)}<h3>${esc(f.name)}</h3></div></div>
  <div class="lucky-guidance"><span><b>宜</b>${esc(f.suitable)}</span><span><b>忌</b>${esc(f.avoid)}</span></div>
  <p class="lucky-verse">${esc(f.message).replace('，','，<br>')}</p><div class="lucky-divider" aria-hidden="true"><span>✦</span></div>
- <dl class="lucky-numbers"><div><dt>幸运步数</dt><dd>${format(f.luckySteps)}<small>步</small></dd></div><div><dt>${record.date===data.date?'今日已走':'当天已走'}</dt><dd>${format(record.sports.steps)}<small>步</small></dd></div></dl>
- <p class="lucky-step-copy">${stepMessage(record.sports.steps,record.sports.goal)}</p><div class="lucky-actions"><button data-ad-close>收下好运</button><button data-share>分享给好友</button></div><p class="lucky-next">这一天的好运，已经为你留住</p><p data-share-status role="status"></p>
- ${rarityRules}<div class="lucky-ambient" aria-hidden="true"><img src="./design/fortune-artwork-05-18-light/fortune-05-light.png" alt=""></div></section>`;
+ 
+ <div class="lucky-actions"><button data-ad-close>收下好运</button><button data-share>分享给好友</button></div><p data-share-status role="status"></p>
+ <div class="lucky-ambient" aria-hidden="true"><img src="./design/fortune-artwork-05-18-light/fortune-05-light.png" alt=""></div></section>`;
  showModal();
 }
 function openDate(){
@@ -56,7 +58,7 @@ async function freeDraw(){
 async function shareFortune(){
  const button=modal.querySelector('[data-share]');if(!button||button.disabled)return;button.disabled=true;const attempt=sequence,record=current;
  try{const blob=await makePoster(record,data.date);if(!modal.open||attempt!==sequence)return;if(posterURL)URL.revokeObjectURL(posterURL);posterURL=URL.createObjectURL(blob);
- modal.innerHTML=`<header class="makeup-header"><h2 id="makeup-heading">把好运分享给好友</h2><button data-result-back aria-label="返回签面">‹</button></header><div class="fortune-poster"><img src="${posterURL}" alt="${esc(record.fortune.name)}走运签"><a href="${posterURL}" download="QQ走运签-${record.date}.png">保存分享卡片</a><button data-native-share>打开系统分享</button><p data-share-status role="status">也可以长按保存图片，发送给QQ好友。</p></div>`;
+ modal.innerHTML=`<header class="makeup-header"><h2 id="makeup-heading">把这份好运，送给你</h2><button data-result-back aria-label="返回签面">‹</button></header><div class="fortune-poster"><img src="${posterURL}" alt="${esc(record.fortune.name)}走运签"><a href="${posterURL}" download="QQ走运签-${record.date}.png">保存签卡</a><button data-native-share>分享好友</button><p data-share-status role="status">长按签卡也可以保存，把好运送给惦记的人。</p></div>`;
  modal.querySelector('[data-native-share]').onclick=async()=>{const file=new File([blob],`QQ走运签-${record.date}.png`,{type:'image/png'});const status=modal.querySelector('[data-share-status]');if(!navigator.canShare?.({files:[file]})){status.textContent='请保存图片后发送给好友';return;}try{await navigator.share({files:[file],title:record.fortune.name});}catch(e){if(e.name!=='AbortError')status.textContent='请保存图片后发送给好友';}};
  modal.scrollTop=0;
  }catch{if(modal.open&&attempt===sequence){modal.querySelector('[data-share-status]').textContent='图片生成失败，请重试';button.disabled=false;}}

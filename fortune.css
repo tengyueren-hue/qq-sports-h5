@@ -105,3 +105,30 @@ body:has(#fortune-dialog[open]){overflow:hidden}
 .lucky-sheet .lucky-ambient img{right:-12px;top:0;width:430px;height:287px;max-width:none}
 .lucky-sheet{overflow:hidden}
 @media(max-width:360px){.lucky-sheet .lucky-ambient{right:-30px;width:220px;height:250px}.lucky-sheet .lucky-ambient img{width:375px;height:250px}}
+
+/* Compact top-left fortune identity, with no banner surface. */
+.summary .summary-fortune{align-self:flex-start;width:auto;min-height:44px;height:44px;justify-content:flex-start;gap:4px;margin:-6px 0 -14px -6px;padding:0 6px;border:0;border-radius:0;background:none}
+.summary .summary-fortune .fortune-slip-art{width:30px;height:44px}
+.summary .summary-fortune>span:not(.summary-fortune-arrow){flex:none;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px}
+.summary .summary-fortune strong{font-size:13px;line-height:18px;font-weight:500}.summary .summary-fortune small{font-size:10px;line-height:14px;color:var(--rarity-ink)}
+
+.yuanbao-fortune-entry{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 12px;margin-top:12px;border:1px solid #dbe9e0;border-radius:22px;background:linear-gradient(110deg,#f0f7ef,#f8fbf4);color:var(--qq-text-primary);font-size:13px;line-height:20px;text-decoration:none}
+.yuanbao-entry-symbol{color:#548065;font-size:18px}.yuanbao-fortune-entry>span:last-child{margin-left:auto;font-size:20px}.yuanbao-fortune-entry>span:first-child{margin-right:auto}.yuanbao-promotion-label{font-size:9px;color:var(--qq-text-secondary);margin-top:4px}.yuanbao-fortune-entry:focus-visible{outline:2px solid var(--qq-text-link);outline-offset:2px}
+
+.lucky-sheet-compact{padding-bottom:24px}.lucky-sheet-compact .lucky-actions{margin-top:22px}.lucky-sheet-compact .yuanbao-fortune-entry{margin-top:10px}
+
+/* Fortune charm attaches to the upper-right arc, outside the step text. */
+.summary .step-ring .summary-fortune{position:absolute;z-index:3;top:16px;right:-22px;display:flex;align-items:center;justify-content:center;width:64px;height:116px;min-height:44px;margin:0;padding:0;background:none;border:0;border-radius:16px;transform:rotate(-9deg);transform-origin:50% 8%;isolation:isolate}
+.summary .step-ring .summary-fortune[hidden]{display:none}
+.summary .step-ring .summary-fortune .fortune-slip-art{width:78px;height:117px;max-width:none;object-fit:contain;border-radius:0;mix-blend-mode:multiply;pointer-events:none;mask-image:linear-gradient(90deg,transparent 12%,#000 32%,#000 70%,transparent 88%)}
+.summary .step-ring .summary-fortune>span{display:none}
+.summary .step-ring .summary-fortune:hover{transform:rotate(-5deg)}
+@media(prefers-reduced-motion:no-preference){.summary .step-ring .summary-fortune{transition:transform .25s ease}}
+@media(max-width:360px){.summary .step-ring .summary-fortune{right:-16px;width:54px;top:17px;height:108px}.summary .step-ring .summary-fortune .fortune-slip-art{width:72px;height:108px}}
+.summary .step-ring .summary-fortune{mix-blend-mode:multiply;isolation:auto}
+/* A collectible print preview with a balanced two-action footer. */
+.fortune-poster{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 22px 22px;background:linear-gradient(#f4f3ed,#fffdf8)}
+.fortune-poster img{grid-column:1/-1;display:block;width:auto;max-width:100%;height:auto;max-height:calc(100svh - 220px);margin:0 auto 8px;object-fit:contain;border-radius:12px;box-shadow:0 8px 26px #463b201c;border:5px solid white}
+.fortune-poster a,.fortune-poster button{display:flex;align-items:center;justify-content:center;min-height:44px;padding:10px 6px;font-size:13px;line-height:22px;border-radius:24px;text-decoration:none;margin:0}
+.fortune-poster a{background:#fff;border:1px solid #e5e1d6;color:var(--qq-text-primary)}.fortune-poster button{background:#ffe189;color:var(--qq-text-primary)}
+.fortune-poster p{grid-column:1/-1;font-size:10px!important;line-height:18px;margin:0;color:var(--qq-text-secondary)}
